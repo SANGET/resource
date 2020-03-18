@@ -40,13 +40,41 @@ RiskCalculator.prototype.count = function() {
   };
 }
 
-var riskCalculator = new RiskCalculator('male', 35);
-riskCalculator.addStrategy(badHobbyStrategy);
-// 测试重复添加策略
-riskCalculator.addStrategy(medicalHistoryStrategy);
-riskCalculator.addStrategy(medicalHistoryStrategy);
-riskCalculator.addStrategy(medicalHistoryStrategy);
-riskCalculator.addStrategy(medicalHistoryStrategy);
-var res = riskCalculator.count();
 
-console.log(res);
+/**
+ * 模拟 3 个场景
+ * 1. 正确输入
+ * 2. 错误输入
+ * 3. 错误调用
+ */
+function currectTester() {
+  var riskCalculator = new RiskCalculator('male', 35);
+  riskCalculator.addStrategy(badHobbyStrategy);
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  var res = riskCalculator.count();
+  
+  console.log(res);
+}
+
+function errorInputTester() {
+  var riskCalculator = new RiskCalculator('male', 70);
+  riskCalculator.addStrategy(badHobbyStrategy);
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  var res = riskCalculator.count();
+  
+  console.log(res);
+}
+
+function errorCallTester() {
+  var riskCalculator = new RiskCalculator('male', 70);
+  riskCalculator.addStrategy(badHobbyStrategy);
+  // 测试重复添加策略
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  riskCalculator.addStrategy(medicalHistoryStrategy);
+  var res = riskCalculator.count();
+  
+  console.log(res);
+}
+
